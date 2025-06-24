@@ -1,101 +1,71 @@
 .cart-container {
   max-width: 800px;
   margin: 2rem auto;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .cart-title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
-  font-weight: 600;
-  color: #333;
+  font-weight: bold;
 }
 
 .empty-message {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #666;
-}
-
-.empty-message a {
-  color: #007bff;
-  text-decoration: underline;
+  font-size: 1rem;
+  color: #555;
 }
 
 .cart-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
-}
-
-.cart-item:last-child {
-  border-bottom: none;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
 }
 
 .item-title {
-  font-size: 1rem;
   font-weight: 500;
-  color: #222;
+  color: #1a202c;
   text-decoration: none;
 }
 
-.item-title:hover {
-  text-decoration: underline;
-}
-
 .item-select {
-  padding: 0.3rem 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #f9f9f9;
+  padding: 0.3rem;
+  border-radius: 5px;
 }
 
 .item-price {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #444;
+  font-weight: 600;
+  color: #2d3748;
 }
 
 .remove-btn {
-  background-color: #dc3545;
+  background: #e53e3e;
   color: white;
-  padding: 0.4rem 0.8rem;
   border: none;
-  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
   cursor: pointer;
-}
-
-.remove-btn:hover {
-  background-color: #c82333;
 }
 
 .cart-total {
   margin-top: 1.5rem;
   font-size: 1.2rem;
-  font-weight: 600;
   text-align: right;
-  color: #222;
+  font-weight: bold;
 }
 
 .checkout-btn {
-  display: block;
-  margin: 1.5rem auto 0;
-  background-color: #28a745;
+  background: #2b6cb0;
   color: white;
-  font-weight: 600;
   padding: 0.7rem 1.5rem;
   border: none;
-  border-radius: 8px;
+  margin-top: 1rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.checkout-btn:hover {
-  background-color: #218838;
+  float: right;
 }

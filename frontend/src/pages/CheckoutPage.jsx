@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../context/Store.jsx';
 import api from '../utils/api.js';
-import '../css/CheckoutPage.css'; // Optional: Create this CSS file if needed
+import '../css/CheckoutPage.css'; // Optional CSS
 
 export default function CheckoutPage() {
   const { state, dispatch } = useContext(Store);
@@ -10,47 +10,48 @@ export default function CheckoutPage() {
     cart: { items },
     userInfo,
   } = state;
+
   const navigate = useNavigate();
 
   const [address, setAddress] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('COD'); // Cash on Delivery
+  const [paymentMethod, setPaymentMethod] = useState('COD'); // Default: Cash on Delivery
 
-  const total = items.reduce((sum, x) => sum + x.qty * x.price, 0).toFixed(2);
+  const total = items.reduce((sum, item) => sum + item.qty * item.price, 0).toFixed(2);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!address) {
-      alert('Please enter your shipping address');
+
+    if (!address.trim()) {
+      alert('Please enter a valid shipping address.');
       return;
     }
 
     try {
-      const { data } = await api.post(
-        '/orders',
-        {
-          orderItems: items.map(item => ({
-            book: item.book,
-            qty: item.qty,
-          })),
-          totalPrice: total,
-          address,
-          paymentMethod,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-          },
-        }
-      );
+      const orderPayload = {
+        orderItems: items.map(item => ({
+          book: item.book,
+          qty: item.qty,
+        })),
+        totalPrice: Number(total),
+        shippingAddress: address,  // ✅ Ensure backend expects "shippingAddress"
+        paymentMethod,             // ✅ Should match backend model if used
+      };
 
-      // Clear cart after order
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await api.post('/orders', orderPayload, config);
+
       dispatch({ type: 'CART_CLEAR' });
       localStorage.removeItem('cartItems');
 
-      alert('Order placed successfully!');
+      alert('✅ Order placed successfully!');
       navigate('/orders');
     } catch (error) {
-      alert(error.response?.data?.message || 'Failed to place order');
+      alert(error.response?.data?.message || '❌ Order failed. Please try again.');
     }
   };
 

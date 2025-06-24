@@ -3,6 +3,7 @@ import api from '../utils/api';
 import { Store } from '../context/Store.jsx';
 import Loader from '../components/Loader.jsx';
 import Message from '../components/Message.jsx';
+import '../css/OrderHistoryPage.css';
 
 export default function OrderHistoryPage() {
   const { state } = useContext(Store);

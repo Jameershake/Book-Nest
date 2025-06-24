@@ -6,7 +6,6 @@ import Message from '../components/Message.jsx';
 import { Store } from '../context/Store.jsx';
 import "../css/BookPage.css";
 
-
 export default function BookPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -32,33 +31,45 @@ export default function BookPage() {
   }, [id]);
 
   const addToCartHandler = () => {
-    dispatch({ type: 'CART_ADD_ITEM', payload: { book: book._id, qty, title: book.title, price: book.price } });
+    dispatch({ type: 'CART_ADD_ITEM', payload: {
+      book: book._id,
+      qty,
+      title: book.title,
+      price: book.price,
+      countInStock: book.countInStock
+    }});
     navigate('/cart');
   };
 
   if (loading) return <Loader />;
   if (error) return <Message>{error}</Message>;
 
- return book ? (
-  <div className="book-page">
-    <h2 className="book-title">{book.title}</h2>
-    <p className="book-author"><strong>Author:</strong> {book.author}</p>
-    <p className="book-description">{book.description}</p>
-    <p className="book-price"><strong>Price:</strong> ${book.price.toFixed(2)}</p>
+  return book ? (
+    <div className="book-page">
+      <h2 className="book-title">{book.title}</h2>
+      <p className="book-author"><strong>Author:</strong> {book.author}</p>
+      <p className="book-description">{book.description}</p>
+      <p className="book-price"><strong>Price:</strong> ${book.price.toFixed(2)}</p>
+      <p className="book-stock"><strong>In Stock:</strong> {book.countInStock}</p>
 
-    <div className="qty-selector">
-      <label>Quantity:</label>
-      <select value={qty} onChange={e => setQty(Number(e.target.value))}>
-        {[...Array(book.countInStock).keys()].map(x => (
-          <option key={x+1} value={x+1}>{x+1}</option>
-        ))}
-      </select>
+      {book.countInStock > 0 ? (
+        <>
+          <div className="qty-selector">
+            <label>Quantity:</label>
+            <select value={qty} onChange={e => setQty(Number(e.target.value))}>
+              {[...Array(book.countInStock).keys()].map(x => (
+                <option key={x+1} value={x+1}>{x+1}</option>
+              ))}
+            </select>
+          </div>
+
+          <button onClick={addToCartHandler} className="add-to-cart-btn">
+            Add to Cart
+          </button>
+        </>
+      ) : (
+        <p style={{ color: 'red' }}><strong>Out of stock</strong></p>
+      )}
     </div>
-
-    <button onClick={addToCartHandler} className="add-to-cart-btn">
-      Add to Cart
-    </button>
-  </div>
-) : null;
-
+  ) : null;
 }
