@@ -1,0 +1,13 @@
+.footer {
+  background-color: #497de3; /* Tailwind gray-200 */
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #374151; /* Tailwind gray-700 */
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
