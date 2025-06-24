@@ -44,21 +44,23 @@ export default function OrderHistoryPage() {
   if (error) return <Message>{error}</Message>;
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-2xl font-bold">My Orders</h2>
+    <div className="order-history-container">
+      <h2 className="text-2xl font-bold mb-4">My Orders</h2>
       {orders.length === 0 ? (
         <Message>You have no orders.</Message>
       ) : (
         orders.map((order) => (
-          <div key={order._id} className="border p-4 rounded shadow-sm">
-            <p><strong>Order ID:</strong> {order._id}</p>
-            <p><strong>Placed on:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
-            <p><strong>Total:</strong> ${order.totalPrice?.toFixed(2)}</p>
-            <p><strong>Status:</strong> {order.isPaid ? '✅ Paid' : '❌ Not Paid'}</p>
+          <div key={order._id} className="order-card">
+            <p className="order-id"><strong>Order ID:</strong> {order._id}</p>
+            <p className="order-date"><strong>Placed on:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
+            <p className="order-total"><strong>Total:</strong> ${order.totalPrice?.toFixed(2)}</p>
+            <p className={`order-status ${order.isPaid ? 'status-paid' : 'status-unpaid'}`}>
+              <strong>Status:</strong> {order.isPaid ? '✅ Paid' : '❌ Not Paid'}
+            </p>
 
-            <div className="mt-2">
-              <h4 className="font-semibold">Items:</h4>
-              <ul className="list-disc list-inside">
+            <div className="order-items">
+              <h4>Items:</h4>
+              <ul>
                 {order.orderItems.map((item, idx) => {
                   const book = item.book || {};
                   return (
