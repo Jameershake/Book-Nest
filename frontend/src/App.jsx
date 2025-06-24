@@ -8,6 +8,8 @@ import CartPage from './pages/CartPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
+import CheckoutPage from './pages/CheckoutPage.jsx';
+
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/orders" element={<OrderHistoryPage
            />} />
+           <Route path="/checkout" element={<CheckoutPage />} />
+
         </Routes>
       </main>
       <Footer />
