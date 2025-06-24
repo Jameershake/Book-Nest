@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../context/Store.jsx';
-import '../css/CheckoutPage.css'; // Create this CSS file if needed
+import api from '../utils/api.js';
+import '../css/CheckoutPage.css'; // Optional: Create this CSS file if needed
 
 export default function CheckoutPage() {
-  const { state } = useContext(Store);
-  const { cart: { items }, userInfo } = state;
+  const { state, dispatch } = useContext(Store);
+  const {
+    cart: { items },
+    userInfo,
+  } = state;
   const navigate = useNavigate();
 
   const [address, setAddress] = useState('');
@@ -13,16 +17,41 @@ export default function CheckoutPage() {
 
   const total = items.reduce((sum, x) => sum + x.qty * x.price, 0).toFixed(2);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (!address) {
       alert('Please enter your shipping address');
       return;
     }
 
-    // You can send this data to backend here
-    alert('Order placed successfully!');
-    navigate('/orders');
+    try {
+      const { data } = await api.post(
+        '/orders',
+        {
+          orderItems: items.map(item => ({
+            book: item.book,
+            qty: item.qty,
+          })),
+          totalPrice: total,
+          address,
+          paymentMethod,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+
+      // Clear cart after order
+      dispatch({ type: 'CART_CLEAR' });
+      localStorage.removeItem('cartItems');
+
+      alert('Order placed successfully!');
+      navigate('/orders');
+    } catch (error) {
+      alert(error.response?.data?.message || 'Failed to place order');
+    }
   };
 
   return (
