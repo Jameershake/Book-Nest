@@ -7,7 +7,7 @@ import { connectDB } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
-import paymentRoutes from './routes/paymentRoutes.js';
+//import paymentRoutes from './routes/paymentRoutes.js';
 
 // Load .env variables
 dotenv.config();
@@ -43,7 +43,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/payment', paymentRoutes);
+//app.use('/api/payment', paymentRoutes);
 
 // Default root route
 app.get('/', (req, res) => {

@@ -9,8 +9,8 @@ import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
-import Success from './components/Success';
-import Cancel from './pages/Cancel';
+// import Success from './components/Success';
+// import Cancel from './pages/Cancel';
 
 
 
@@ -28,8 +28,8 @@ export default function App() {
           <Route path="/orders" element={<OrderHistoryPage
            />} />
            <Route path="/checkout" element={<CheckoutPage />} />
-           <Route path="/success" element={<Success />} />
-           <Route path="/cancel" element={<Cancel />} />
+           {/* <Route path="/success" element={<Success />} />
+           <Route path="/cancel" element={<Cancel />} /> */}
 
 
         </Routes>
