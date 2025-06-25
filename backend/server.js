@@ -20,7 +20,7 @@ const app = express();
 // Allowed origins for CORS
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://your-vercel-app.vercel.app' // ✅ Replace with your real Vercel frontend URL
+  'https://book-nest-two-steel.vercel.app' // ✅ Replace with your real Vercel frontend URL
 ];
 
 // Configure CORS
