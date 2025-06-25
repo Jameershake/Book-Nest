@@ -9,6 +9,8 @@ import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
+import Success from './components/Success';
+
 
 
 export default function App() {
