@@ -10,7 +10,7 @@ import SignupPage from './pages/SignupPage.jsx';
 import OrderHistoryPage from './pages/OrderHistoryPage.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
 import Success from './components/Success';
-import Success from './pages/CheckoutButton.jsx';
+//import Success from './pages/CheckoutButton.jsx';
 import Cancel from './pages/Cancel';
 //import CheckoutButton from './pages/CheckoutButton.jsx';
 
