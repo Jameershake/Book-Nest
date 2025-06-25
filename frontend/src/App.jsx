@@ -30,8 +30,8 @@ export default function App() {
           <Route path="/orders" element={<OrderHistoryPage
            />} />
            <Route path="/checkout" element={<CheckoutPage />} />
-           <Route path="/success" element={<Success />} />
-           <Route path="/cancel" element={<Cancel />} />
+           {/* <Route path="/success" element={<Success />} />
+           <Route path="/cancel" element={<Cancel />} /> */}
            {/* <Route path="/check" element={<CheckoutButton />} /> */}
 
 
