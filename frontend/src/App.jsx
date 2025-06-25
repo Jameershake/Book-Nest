@@ -12,7 +12,7 @@ import CheckoutPage from './pages/CheckoutPage.jsx';
 import Success from './components/Success';
 import Success from './pages/CheckoutButton.jsx';
 import Cancel from './pages/Cancel';
-import CheckoutButton from './pages/CheckoutButton.jsx';
+//import CheckoutButton from './pages/CheckoutButton.jsx';
 
 
 
@@ -32,7 +32,7 @@ export default function App() {
            <Route path="/checkout" element={<CheckoutPage />} />
            <Route path="/success" element={<Success />} />
            <Route path="/cancel" element={<Cancel />} />
-           <Route path="/check" element={<CheckoutButton />} />
+           {/* <Route path="/check" element={<CheckoutButton />} /> */}
 
 
         </Routes>
